@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.4" />
+    <PackageReference Include="MassTransit" Version="5.5.6" />
+    <PackageReference Include="MassTransit.AutoFac" Version="5.5.6" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="5.5.6" />
+    <PackageReference Include="MassTransit.SerilogIntegration" Version="5.5.6" />
+    <PackageReference Include="Serilog" Version="2.9.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Distributor.API.Contracts\Distributor.API.Contracts.csproj" />
+    <ProjectReference Include="..\Distributor.Messaging\Distributor.Messaging.csproj" />
+    <ProjectReference Include="..\Distributor.Worker.Contracts\Distributor.Worker.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>
