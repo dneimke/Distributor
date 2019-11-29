@@ -49,6 +49,7 @@ namespace Distributor.API
         {
             while (true)
             {
+                Log.Information("Requesting {amount} of work - mosh!", 1000);
                 await Task.Delay(TimeSpan.FromSeconds(3));
                 await _command.SendCommand(new DoWork("Mosh, mosh!", 1000));
             }
