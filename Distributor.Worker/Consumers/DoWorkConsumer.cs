@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Distributor.API.Contracts;
 using Distributor.Messaging;
 using Distributor.Worker.Contracts;
 using MassTransit;

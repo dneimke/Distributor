@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Distributor.API.Contracts;
-using Distributor.Messaging;
-using Serilog;
 
 namespace Distributor.Worker
 {

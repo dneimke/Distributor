@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Distributor.API.Contracts\Distributor.API.Contracts.csproj" />
     <ProjectReference Include="..\Distributor.Messaging\Distributor.Messaging.csproj" />
     <ProjectReference Include="..\Distributor.Worker.Contracts\Distributor.Worker.Contracts.csproj" />
   </ItemGroup>

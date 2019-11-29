@@ -1,6 +1,6 @@
 ﻿using Distributor.Messaging;
 
-namespace Distributor.API.Contracts
+namespace Distributor.Worker.Contracts
 {
     public class DoWork : ICommand
     {

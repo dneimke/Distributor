@@ -2,12 +2,10 @@
 using System.Reflection;
 using System.Threading.Tasks;
 using Autofac;
-using Distributor.API.Contracts;
 using Distributor.Messaging;
 using Distributor.Worker.Consumers;
 using Distributor.Worker.Contracts;
 using MassTransit;
-using MassTransit.RabbitMqTransport;
 using Serilog;
 
 namespace Distributor.Worker

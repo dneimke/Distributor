@@ -1,5 +1,4 @@
-﻿using System;
-using Distributor.Messaging;
+﻿using Distributor.Messaging;
 
 namespace Distributor.Worker.Contracts
 {
