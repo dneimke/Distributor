@@ -3,13 +3,13 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Autofac;
 using Distributor.Messaging;
-using Distributor.Worker.Consumers;
 using Distributor.Worker.Contracts;
+using Distributor.Worker.Faulty.Consumers;
 using MassTransit;
 using Serilog;
 using Serilog.Context;
 
-namespace Distributor.Worker
+namespace Distributor.Worker.Faulty
 {
     class Program
     { 
@@ -56,14 +56,9 @@ namespace Distributor.Worker
                         hostConfig.PublisherConfirmation = true;
                     });
 
-                    // Wires up the registered consumers to incoming messages (TODO: this can be further abstracted to a convention based enumeration)
-                    bus.SubscribeToCommand<DoWork, DoWorkConsumer>(host, context);
-                    bus.SubscribeToTopic<ValueCreated, ValueCreatedConsumer>(host, context);
+                    bus.SubscribeToCommand<DoWork, DoWorkConsumer, FaultConsumer>(host, context);
                 }));
             });
-
-            builder.RegisterGeneric(typeof(CommandSender<>)).As(typeof(ICommandSender<>)).InstancePerDependency();
-            builder.RegisterGeneric(typeof(EventPublisher<>)).As(typeof(IEventPublisher<>)).InstancePerDependency();
 
             return builder.Build();
         }

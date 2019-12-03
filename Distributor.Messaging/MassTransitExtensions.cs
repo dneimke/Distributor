@@ -1,5 +1,6 @@
 ﻿using System;
 using Autofac;
+using GreenPipes;
 using MassTransit;
 using MassTransit.RabbitMqTransport;
 
@@ -14,7 +15,32 @@ namespace Distributor.Messaging
         {
             bus.ReceiveEndpoint(host,
                 Exchange.GetName<TCommand>(),
-                endpoint => { endpoint.ConfigureConsumer<TConsumer>(context); });
+                endpoint =>
+                {
+                    endpoint.ConfigureConsumer<TConsumer>(context);
+                });
+        }
+
+        public static void SubscribeToCommand<TCommand, TConsumer, TFaultConsumer>(
+            this IRabbitMqBusFactoryConfigurator bus, IRabbitMqHost host, IComponentContext context)
+            where TConsumer : class, IConsumer<TCommand>
+            where TFaultConsumer: class, IConsumer<Fault<TCommand>>
+            where TCommand : class, ICommand
+        {
+            bus.ReceiveEndpoint(host,
+                Exchange.GetName<TCommand>(),
+                endpoint =>
+                {
+                    endpoint.UseMessageRetry(r => r.Immediate(3));
+                    endpoint.ConfigureConsumer<TConsumer>(context);
+                });
+
+            bus.ReceiveEndpoint(host,
+                Exchange.GetName<TCommand>() + "_Fault",
+                endpoint =>
+                {
+                    endpoint.ConfigureConsumer<TFaultConsumer>(context);
+                });
         }
 
         public static void SubscribeToTopic<TEvent, TConsumer>(

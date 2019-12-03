@@ -9,7 +9,7 @@ namespace Distributor.API.Consumers
     {
         public Task Consume(ConsumeContext<ValueCreated> context)
         {
-            Log.Information("{value} of value was created", context.Message.Amount);
+            Log.Information("{value} of value was created by {workerId}", context.Message.Amount, context.Message.WorkerId.ToString("N"));
 
             return Task.CompletedTask;
         }
